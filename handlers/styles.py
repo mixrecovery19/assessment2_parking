@@ -1,6 +1,7 @@
 # styles.py
 
-# --- Global colours ---
+# --- A brief example of handling the styles globally that can be reused throughout the application ---
+# --- you can grow this section as required ---
 CAMPUS_BG = "#ffcccc"   # light red
 STUDENT_BG = "#cfccff"  # light blue
 STUDENT_PARKING_BG = "#9a94ee"  # dark blue
@@ -13,7 +14,5 @@ MAIN_PAGE_BUTTON_COLOR_STUDENT = "#cfccff"
 MAIN_PAGE_BUTTON_COLOR_STUDENT_PARKING = "#9a94ee"
 MAIN_PAGE_BUTTON_COLOR_STUDENT_PARKING_DB = "#4cc505"
 
-
-# --- Fonts ---
 DEFAULT_FONT = ("Arial", 12)
 TITLE_FONT = ("Arial", 14, "bold")

@@ -1,7 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
-import json
-from datetime import datetime
 from create_student import open_create_student_manager
 from create_student_db import open_create_student_manager_db
 from update_student import open_update_student_manager
@@ -26,7 +23,7 @@ def open_student_manager_ui():
     tk.Button(root, text="Create Student Manager (DB)", command=open_create_student_manager_db, width=30).pack(pady=10)
     tk.Button(root, text="Update Student Manager", command=open_update_student_manager, width=30).pack(pady=10)
     tk.Button(root, text="Update Student Manager (DB)", command=open_update_student_manager_db, width=30).pack(pady=10)
-    tk.Button(root, text="Students Parking Search", command=open_student_parking_search_db, width=30).pack(pady=10)
+    tk.Button(root, text="Students Parking Search (DB)", command=open_student_parking_search_db, width=30).pack(pady=10)
     tk.Button(root, text="Exit", command=root.destroy, width=30).pack(pady=10)
 
     root.mainloop()

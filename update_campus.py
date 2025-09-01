@@ -41,13 +41,11 @@ def open_update_campus_manager():
     mk_root = tk.Tk()
     mk_root.title("MP Campus Management")
     mk_root.geometry("500x500")
-
-    # Dropdown to select campus
+    
     campus_var = tk.StringVar()
     campus_dropdown = tk.OptionMenu(mk_root, campus_var, *[f"{c['campus_id']}: {c['campus_name']}" for c in manager.campus])
     campus_dropdown.pack(pady=10)
-
-    # Form fields
+    
     tk.Label(mk_root, text="Campus Name:").pack()
     mk_campus_name_entry = tk.Entry(mk_root)
     mk_campus_name_entry.pack()
@@ -63,8 +61,7 @@ def open_update_campus_manager():
     tk.Label(mk_root, text="Price Per Hour:").pack()
     mk_campus_price_per_hour_entry = tk.Entry(mk_root)
     mk_campus_price_per_hour_entry.pack()
-
-    # Populate form when campus selected
+    
     def load_campus_details(*args):
         selection = campus_var.get()
         if not selection:
@@ -85,8 +82,7 @@ def open_update_campus_manager():
             mk_campus_price_per_hour_entry.insert(0, campus.get("price_per_hour", ""))
 
     campus_var.trace_add("write", load_campus_details)
-
-    # Update function
+    
     def update_campus_from_form():
         selection = campus_var.get()
         if not selection:
@@ -106,8 +102,7 @@ def open_update_campus_manager():
         item = manager.mk_update_campus(campus_id, name, location, int(total_carparks), float(price_per_hour))
         if item:
             messagebox.showinfo("Success", f"Campus {campus_id} updated successfully!")
-
-    # Button
+   
     tk.Button(mk_root, text="Update Selected Campus", command=update_campus_from_form).pack(pady=5)
     tk.Button(mk_root, text="Exit Campus Update Manager", command=mk_root.destroy).pack(pady=5)
 

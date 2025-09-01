@@ -7,7 +7,7 @@ from student_parking_manager_db import open_student_parking_manager_db
 from handlers import styles
 from config import get_db_connection
 import mysql.connector, json
-
+# --- a basic program to demonstrate a simple student parking management system for the handling of data through both json & database ---
 PASSWORD = "admin123"
 
 def load_students():

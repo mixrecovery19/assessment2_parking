@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-# Load variables from .env
+# an example of dotenv testing
 load_dotenv()
 
 print("DB_HOST:", os.getenv("DB_HOST"))

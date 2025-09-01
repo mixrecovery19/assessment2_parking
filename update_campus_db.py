@@ -1,28 +1,15 @@
 import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
-from datetime import datetime
 from dotenv import load_dotenv
 import os
-
-load_dotenv()
-DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
-DB_PORT = int(os.getenv("DB_PORT", 3306))
-DB_NAME = os.getenv("DB_NAME", "carpark")
-DB_USER = os.getenv("DB_USER", "Michael-MP")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+from config import get_db_connection
 
 CampusTotalCarparks = 100
 
 class CampusManager:
     def __init__(self):
-        self.connection = mysql.connector.connect(
-            host=DB_HOST,
-            port=DB_PORT,
-            user=DB_USER,
-            password=DB_PASSWORD,
-            database=DB_NAME
-        )
+        self.connection = get_db_connection()
         self.campus = self.mk_load_campus()
 
     def mk_load_campus(self):
@@ -45,8 +32,7 @@ class CampusManager:
         cursor.execute(sql, (mk_campus_name, mk_campus_location, mk_total_carparks, mk_price_per_hour, mk_campus_id))
         self.connection.commit()
         cursor.close()
-
-        # Update local list
+        
         for item in self.campus:
             if item["campus_id"] == mk_campus_id:
                 item["campus_name"] = mk_campus_name
@@ -62,22 +48,17 @@ class CampusManager:
         if self.connection.is_connected():
             self.connection.close()
 
-# -----------------------------
-# Tkinter GUI
-# -----------------------------
 def open_update_campus_manager_db():
     manager = CampusManager()
 
     mk_root = tk.Tk()
     mk_root.title("MP Campus Update Manager")
     mk_root.geometry("500x500")
-
-    # Dropdown to select campus
+   
     campus_var = tk.StringVar()
     campus_dropdown = tk.OptionMenu(mk_root, campus_var, *[f"{c['campus_id']}: {c['campus_name']}" for c in manager.campus])
     campus_dropdown.pack(pady=10)
-
-    # Form fields
+    
     tk.Label(mk_root, text="Campus Name:").pack()
     mk_campus_name_entry = tk.Entry(mk_root)
     mk_campus_name_entry.pack()
@@ -93,8 +74,7 @@ def open_update_campus_manager_db():
     tk.Label(mk_root, text="Price Per Hour:").pack()
     mk_campus_price_per_hour_entry = tk.Entry(mk_root)
     mk_campus_price_per_hour_entry.pack()
-
-    # Populate form when campus selected
+   
     def load_campus_details(*args):
         selection = campus_var.get()
         if not selection:
@@ -116,7 +96,7 @@ def open_update_campus_manager_db():
 
     campus_var.trace_add("write", load_campus_details)
 
-    # Update function
+    
     def update_campus_from_form():
         selection = campus_var.get()
         if not selection:
@@ -136,13 +116,11 @@ def open_update_campus_manager_db():
         success = manager.mk_update_campus(campus_id, name, location, int(total_carparks), float(price_per_hour))
         if success:
             messagebox.showinfo("Success", f"Campus {campus_id} updated successfully!")
-
-    # Buttons
+   
     tk.Button(mk_root, text="Update Selected Campus", command=update_campus_from_form).pack(pady=5)
     tk.Button(mk_root, text="Exit Campus Update Manager", command=lambda: [manager.close_connection(), mk_root.destroy()]).pack(pady=5)
 
     mk_root.mainloop()
 
-# Run the GUI
 if __name__ == "__main__":
     open_update_campus_manager_db()

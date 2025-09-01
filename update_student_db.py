@@ -4,16 +4,12 @@ import mysql.connector
 from dotenv import load_dotenv
 import os
 
-# -----------------------------
-# Load environment variables
-# -----------------------------
 load_dotenv()
 DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
 DB_PORT = int(os.getenv("DB_PORT", 3306))
 DB_NAME = os.getenv("DB_NAME", "carpark")
 DB_USER = os.getenv("DB_USER", "Michael-MP")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
-
 class StudentManager:
     def __init__(self):
         self.connection = mysql.connector.connect(
@@ -46,8 +42,7 @@ class StudentManager:
         cursor.execute(sql, (mk_student_number, mk_first_name, mk_last_name, mk_email, mk_rego, mk_student_id))
         self.connection.commit()
         cursor.close()
-
-        # Update local list
+        
         for item in self.students:
             if item["student_id"] == mk_student_id:
                 item["student_number"] = mk_student_number
@@ -64,17 +59,13 @@ class StudentManager:
         if self.connection.is_connected():
             self.connection.close()
 
-# -----------------------------
-# Tkinter GUI
-# -----------------------------
 def open_update_student_manager_db():
     manager = StudentManager()
 
     mk_root = tk.Tk()
     mk_root.title("MP Student Update Manager")
     mk_root.geometry("500x500")
-
-    # --- Dropdown to select student ---
+    
     student_var = tk.StringVar()
     student_dropdown = tk.OptionMenu(
         mk_root,
@@ -82,8 +73,7 @@ def open_update_student_manager_db():
         *[f"{s['student_id']}: {s['student_first_name']} {s['student_last_name']}" for s in manager.students]
     )
     student_dropdown.pack(pady=10)
-
-    # --- Form fields ---
+    
     tk.Label(mk_root, text="Student Number:").pack()
     mk_student_number_entry = tk.Entry(mk_root)
     mk_student_number_entry.pack()
@@ -103,8 +93,7 @@ def open_update_student_manager_db():
     tk.Label(mk_root, text="Car Registration:").pack()
     mk_student_rego_entry = tk.Entry(mk_root)
     mk_student_rego_entry.pack()
-
-    # --- Populate form when student selected ---
+    
     def load_student_details(*args):
         selection = student_var.get()
         if not selection:
@@ -128,8 +117,7 @@ def open_update_student_manager_db():
             mk_student_rego_entry.insert(0, student["student_rego"])
 
     student_var.trace_add("write", load_student_details)
-
-    # --- Update function ---
+    
     def update_student_from_form():
         selection = student_var.get()
         if not selection:
@@ -150,13 +138,11 @@ def open_update_student_manager_db():
             messagebox.showinfo("Success", f"Student ID {student_id} updated successfully!")
         else:
             messagebox.showerror("Error", f"Failed to update student ID {student_id}.")
-
-    # --- Buttons ---
+    
     tk.Button(mk_root, text="Update Selected Student", command=update_student_from_form).pack(pady=5)
     tk.Button(mk_root, text="Exit", command=lambda: [manager.close_connection(), mk_root.destroy()]).pack(pady=5)
 
     mk_root.mainloop()
 
-# Run the GUI
 if __name__ == "__main__":
     open_update_student_manager_db()

@@ -15,8 +15,7 @@ class CampusManager:
             with open(self.filename, 'r') as file:
                 return json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
-            return []  # empty if no file yet
-
+            return []  
     def mk_save_campus(self):
         with open(self.filename, 'w') as file:
             json.dump(self.campus, file, indent=4)
@@ -27,7 +26,7 @@ class CampusManager:
             "campus_total_carparks": CampusTotalCarparks,
             "campus_name": mk_campus_name,
             "campus_location": mk_campus_location,
-            "available_carparks": CampusTotalCarparks,  # Initially all carparks are available
+            "available_carparks": CampusTotalCarparks,  # have not provided the functionality to handle carpark occupancy, but is an easy enhancement
             "occupied_carparks": 0,
             "price_per_hour": 0,
             "added_on": datetime.now().isoformat()
@@ -36,7 +35,7 @@ class CampusManager:
         self.campus.append(item)
         self.mk_save_campus()
         print(f"✅ Added '{mk_campus_name}' to campuses")
-        return item  # so we can update the UI with this record
+        return item  
 
 def open_create_campus_manager():
     manager = CampusManager()
@@ -44,8 +43,7 @@ def open_create_campus_manager():
     mk_root = tk.Tk()
     mk_root.title("MP Campus Management")
     mk_root.geometry("500x500")
-
-    # Form fields
+   
     tk.Label(mk_root, text="Campus Name:").pack()
     mk_campus_name_entry = tk.Entry(mk_root)
     mk_campus_name_entry.pack()
@@ -61,12 +59,10 @@ def open_create_campus_manager():
     tk.Label(mk_root, text="Price Per Hour:").pack()
     mk_campus_price_per_hour_entry = tk.Entry(mk_root)
     mk_campus_price_per_hour_entry.pack()
-
-    # Listbox to display records
+   
     mk_listbox = tk.Listbox(mk_root, width=50)
     mk_listbox.pack(pady=10)
-
-    # Function to add campus from form
+    
     def create_campus_from_form():
         name = mk_campus_name_entry.get().strip()
         location = mk_campus_location_entry.get().strip()
@@ -81,10 +77,8 @@ def open_create_campus_manager():
         
         mk_campus_name_entry.delete(0, tk.END)
         mk_campus_location_entry.delete(0, tk.END)
-
-    # Button
+    
     tk.Button(mk_root, text="Create Campus", command=create_campus_from_form).pack(pady=5)
     tk.Button(mk_root, text="Exit Campus Manager", command=mk_root.destroy).pack(pady=5)
-
-    # Start GUI loop
+    
     mk_root.mainloop()

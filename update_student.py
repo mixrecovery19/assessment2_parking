@@ -38,8 +38,7 @@ def open_update_student_manager():
     mk_root = tk.Tk()
     mk_root.title("MP Student Update Manager")
     mk_root.geometry("500x500")
-
-    # --- Dropdown to select student ---
+    
     student_var = tk.StringVar()
     student_dropdown = tk.OptionMenu(
         mk_root,
@@ -47,8 +46,7 @@ def open_update_student_manager():
         *[f"{s['student_id']}: {s['student_first_name']} {s['student_last_name']}" for s in manager.students]
     )
     student_dropdown.pack(pady=10)
-
-    # --- Form fields ---
+    
     tk.Label(mk_root, text="Student Number:").pack()
     mk_student_number_entry = tk.Entry(mk_root)
     mk_student_number_entry.pack()
@@ -68,8 +66,7 @@ def open_update_student_manager():
     tk.Label(mk_root, text="Car Registration:").pack()
     mk_student_rego_entry = tk.Entry(mk_root)
     mk_student_rego_entry.pack()
-
-    # --- Populate form when student selected ---
+    
     def load_student_details(*args):
         selection = student_var.get()
         print(f"Variable changed! New Value: {selection}")
@@ -92,11 +89,9 @@ def open_update_student_manager():
 
             mk_student_rego_entry.delete(0, tk.END)
             mk_student_rego_entry.insert(0, student["student_rego"])
-
-    # ✅ trace binding should be here, not inside the function
+    
     student_var.trace_add("write", load_student_details)
-
-    # --- Update function ---
+    
     def update_student_from_form():
         selection = student_var.get()
         if not selection:
@@ -117,8 +112,7 @@ def open_update_student_manager():
             messagebox.showinfo("Success", f"Student ID {student_id} updated successfully!")
         else:
             messagebox.showerror("Error", f"Failed to update student ID {student_id}.")
-
-    # --- Buttons ---
+    
     tk.Button(mk_root, text="Update Selected Student", command=update_student_from_form).pack(pady=5)
     tk.Button(mk_root, text="Exit", command=mk_root.destroy).pack(pady=5)
 

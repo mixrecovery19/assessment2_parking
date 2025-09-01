@@ -31,21 +31,18 @@ class StudentParkingCampus:
             return []       
 
 
-def open_student_parking_manager(student):
-    manager = StudentParkingManager()
+def open_student_parking_manager(student):    
     campus_manager = StudentParkingCampus()
 
     mk_root = tk.Tk()
     mk_root.title("MP Student Car Park Activation")
     mk_root.geometry("500x500")
-
-    # --- Campus selection box ---
+   
     tk.Label(mk_root, text="Select Campus:").pack()
     campus_names = [c["campus_name"] for c in campus_manager.campuses]
     mk_campus_combo = ttk.Combobox(mk_root, values=campus_names, state="readonly")
     mk_campus_combo.pack(pady=5)
-
-    # Form fields
+    
     tk.Label(mk_root, text="Student Number:").pack()
     mk_student_number = tk.Label(mk_root, text=student["student_number"])
     mk_student_number.pack()
@@ -64,10 +61,9 @@ def open_student_parking_manager(student):
 
     tk.Label(mk_root, text="Car Registration:").pack()
     mk_student_rego_entry = tk.Entry(mk_root)
-    mk_student_rego_entry.insert(0, student["student_rego"])  # prefill rego
+    mk_student_rego_entry.insert(0, student["student_rego"])  # prefill rego from student_rego
     mk_student_rego_entry.pack()
-
-    # --- Parking Duration Selection (Combobox) ---
+   
     tk.Label(mk_root, text="Select Parking Duration (Hours):").pack(pady=10)
     durations = [1, 2, 4, 8]  # directly as numbers
     duration_var = tk.IntVar(value=1)  # default selection
@@ -77,20 +73,17 @@ def open_student_parking_manager(student):
         values=durations,
         state="readonly"
     )
-    mk_duration_combo.current(0)  # default to first item
+    mk_duration_combo.current(0)  # the zero-based index simply defaults to the first item
     mk_duration_combo.pack(pady=5)
-
-    # Label to display selected duration
+    
     tk.Label(mk_root, text="Selected Duration:").pack()
     mk_selected_duration_label = tk.Label(mk_root, text=str(duration_var.get()))
     mk_selected_duration_label.pack()
-
-    # Label for total cost
+    
     tk.Label(mk_root, text="Total Cost:").pack()
     mk_total_cost_label = tk.Label(mk_root, text="$0.00")
     mk_total_cost_label.pack()
-
-    # --- Update Total Cost ---
+    
     def update_total_cost():
         campus_name = mk_campus_combo.get()
         hours = duration_var.get()
@@ -107,8 +100,7 @@ def open_student_parking_manager(student):
         price_per_hour = selected_campus.get("price_per_hour", 0)
         total_cost = hours * price_per_hour
         mk_total_cost_label.config(text=f"${total_cost:.2f}")
-
-    # --- Update Selected Duration Label ---
+    
     def update_selected_duration_label(event=None):
         selected = mk_duration_combo.get()
         if selected:
@@ -119,7 +111,7 @@ def open_student_parking_manager(student):
     mk_duration_combo.bind("<<ComboboxSelected>>", update_selected_duration_label)
     mk_campus_combo.bind("<<ComboboxSelected>>", lambda e: update_total_cost())
 
-    # --- Submit Button ---
+   # --- submit button speaks for itself
     def submit_parking():
         campus = mk_campus_combo.get()
         hours = duration_var.get()
@@ -137,7 +129,7 @@ def open_student_parking_manager(student):
         price_per_hour = selected_campus.get("price_per_hour", 0)
         total_cost = hours * price_per_hour
 
-        # Build receipt entry
+       # builds what you would like to display to the receipt, should you wish to actually handle a form of receipt processing delivery/printing
         receipt = {
             "student_number": student["student_number"],
             "student_first_name": student["student_first_name"],
@@ -149,8 +141,7 @@ def open_student_parking_manager(student):
             "total_cost": total_cost,
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
-
-        # Save to student_parking_receipt.json
+       # kept the son data relevance as a way to demonstrate both json and database variations of data handling
         receipts_file = "student_parking_receipt.json"
         try:
             if os.path.exists(receipts_file):
@@ -165,8 +156,7 @@ def open_student_parking_manager(student):
 
         with open(receipts_file, "w") as f:
             json.dump(receipts, f, indent=4)
-
-        # Confirmation popup
+        
         messagebox.showinfo(
             "Parking Confirmed",
             f"Parking booked for {student['student_first_name']} {student['student_last_name']}.\n"
@@ -178,7 +168,6 @@ def open_student_parking_manager(student):
         )
 
     tk.Button(mk_root, text="Submit", command=submit_parking).pack(pady=20)
-
     tk.Button(mk_root, text="Exit", command=mk_root.destroy).pack(pady=10)
 
     mk_root.mainloop()

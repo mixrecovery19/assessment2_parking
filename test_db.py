@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import mysql.connector
 
-# Load variables from .env
+# more examples of the way I would test my database connection to establish database is actually returning data prior to continuing with build
 load_dotenv()
 
 DB_HOST = os.getenv("DB_HOST")
@@ -11,7 +11,6 @@ DB_NAME = os.getenv("DB_NAME")
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 
-# Test connection
 try:
     connection = mysql.connector.connect(
         host=DB_HOST,

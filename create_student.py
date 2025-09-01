@@ -13,7 +13,7 @@ class StudentManager:
             with open(self.filename, 'r') as file:
                 return json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
-            return []  # empty if no file yet
+            return [] 
 
     def mk_save_students(self):
         with open(self.filename, 'w') as file:
@@ -47,8 +47,7 @@ def open_create_student_manager():
     mk_root.title("MP Student Car Park Activation")
     mk_root.geometry("500x500")
 
-    #search existing students
-    # --- Student selection box ---
+    #search existing students    
     tk.Label(mk_root, text="Select Existing Student:").pack()
     student_names = [f"{c['student_id']}: {c['student_first_name']} {c['student_last_name']}" for c in manager.students]
     student_var = tk.StringVar()
@@ -60,8 +59,7 @@ def open_create_student_manager():
         text="Select This Student To Update",
         command=lambda: load_student_details()
     ).pack(pady=5)
-
-    # Form fields
+    
     tk.Label(mk_root, text="Student Number:").pack()
     mk_student_number_entry = tk.Entry(mk_root)
     mk_student_number_entry.pack()
@@ -81,12 +79,10 @@ def open_create_student_manager():
     tk.Label(mk_root, text="Car Registration:").pack()
     mk_student_rego_entry = tk.Entry(mk_root)
     mk_student_rego_entry.pack()
-
-    # Listbox to display records
+    
     mk_listbox = tk.Listbox(mk_root, width=50)
     mk_listbox.pack(pady=10)
-
-    # Function to create student from form
+    
     def create_student_from_form():
         num = mk_student_number_entry.get().strip()
         first = mk_student_first_name_entry.get().strip()
@@ -99,11 +95,9 @@ def open_create_student_manager():
             return
 
         item = manager.mk_add_student(num, first, last, email, rego)
-
-        # Add to listbox
+       
         mk_listbox.insert(tk.END, f"{item['student_id']}: {first} {last} ({rego})")
-
-        # Clear entries
+       
         mk_student_number_entry.delete(0, tk.END)
         mk_student_first_name_entry.delete(0, tk.END)
         mk_student_last_name_entry.delete(0, tk.END)
@@ -133,10 +127,8 @@ def open_create_student_manager():
             mk_student_rego_entry.insert(0, student["student_rego"])
 
         student_var.trace_add("w", load_student_details)
-
-    # Button
+    
     tk.Button(mk_root, text="Add Student", command=create_student_from_form).pack(pady=5)    
     tk.Button(mk_root, text="Exit Student Manager", command=mk_root.destroy).pack(pady=5)
-
-    # Start GUI loop
+    
     mk_root.mainloop()

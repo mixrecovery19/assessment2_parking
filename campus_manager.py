@@ -1,7 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
-import json
-from datetime import datetime
 from create_campus import open_create_campus_manager
 from update_campus import open_update_campus_manager
 from create_campus_db import open_create_campus_manager_db

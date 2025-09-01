@@ -3,7 +3,7 @@ import os, mysql.connector
 
 load_dotenv()
 
-# Database credentials
+# Basic Database credentials that will be used to connect to the MySQL database and can easily be adjusted to suit your own database
 DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
 DB_PORT = int(os.getenv("DB_PORT", 3306))
 DB_NAME = os.getenv("DB_NAME", "carpark")
@@ -19,7 +19,7 @@ DB_CONFIG = {
     "database": DB_NAME
 }
 
-# Other constants
+# Other constants can be added here if you were to choose to grow the project and clean it up
 DEFAULT_PASSWORD = "admin123"
 
 def get_db_connection():
