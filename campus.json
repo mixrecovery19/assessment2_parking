@@ -1,0 +1,105 @@
+[
+    {
+        "campus_id": 1,
+        "campus_total_carparks": 100,
+        "campus_name": "Preston",
+        "campus_location": "27 High Street Preston",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 5.5,
+        "added_on": "2025-08-17T05:44:04.254931",
+        "total_carparks": 250
+    },
+    {
+        "campus_id": 2,
+        "campus_total_carparks": 100,
+        "campus_name": "Epping",
+        "campus_location": "Dalton Road Epping",
+        "available_carparks": 0,
+        "occupied_carparks": 0,
+        "price_per_hour": 4.25,
+        "added_on": "2025-08-17T06:03:38.881574",
+        "total_carparks": 125
+    },
+    {
+        "campus_id": 3,
+        "campus_total_carparks": 100,
+        "campus_name": "Broadmeadows",
+        "campus_location": "Camp Road Broadmeadows",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 0,
+        "added_on": "2025-08-21T15:36:35.919975"
+    },
+    {
+        "campus_id": 4,
+        "campus_total_carparks": 100,
+        "campus_name": "Collingwood",
+        "campus_location": "20 Otter Street Collingwood",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 0,
+        "added_on": "2025-08-28T12:19:48.347679"
+    },
+    {
+        "campus_id": 5,
+        "campus_total_carparks": 100,
+        "campus_name": "Heidelberg",
+        "campus_location": "Cnr Bell St & Waterdale Rd Heidelberg, Victoria 3081",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 12.59,
+        "added_on": "2025-08-28T12:21:12.684587",
+        "total_carparks": 300
+    },
+    {
+        "campus_id": 6,
+        "campus_total_carparks": 100,
+        "campus_name": "Prahran",
+        "campus_location": "144 High Street Prahran, Victoria, 3181",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 0,
+        "added_on": "2025-08-28T12:22:38.746975"
+    },
+    {
+        "campus_id": 7,
+        "campus_total_carparks": 100,
+        "campus_name": "Greensborough",
+        "campus_location": "Civic Drive, Greensborough, Victoria, 3088",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 0,
+        "added_on": "2025-08-28T12:23:45.016033"
+    },
+    {
+        "campus_id": 8,
+        "campus_total_carparks": 100,
+        "campus_name": "Eden Park",
+        "campus_location": "Glen Robin Court, Eden Park, Victoria, 3111",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 0,
+        "added_on": "2025-08-28T12:25:37.643420"
+    },
+    {
+        "campus_id": 9,
+        "campus_total_carparks": 100,
+        "campus_name": "Yan Yean",
+        "campus_location": "Plenty Road, Yan Yean, Victoria, 3755",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 0,
+        "added_on": "2025-08-28T12:26:45.777879"
+    },
+    {
+        "campus_id": 10,
+        "campus_total_carparks": 100,
+        "campus_name": "Ararat",
+        "campus_location": "Grano Street, Ararat, Victoria, 3377",
+        "available_carparks": 100,
+        "occupied_carparks": 0,
+        "price_per_hour": 0,
+        "added_on": "2025-08-28T12:27:41.804101"
+    }
+]

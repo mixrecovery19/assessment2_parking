@@ -1,0 +1,56 @@
+[
+    {
+        "student_id": 1,
+        "student_number": "042529",
+        "student_first_name": "Peter",
+        "student_last_name": "Johnston",
+        "student_email": "pete@example.com",
+        "student_rego": "jfj334",
+        "added_on": "2025-08-17T05:45:46.485703"
+    },
+    {
+        "student_id": 2,
+        "student_number": "12432",
+        "student_first_name": "Peter",
+        "student_last_name": "Smith",
+        "student_email": "tes@sdf.com",
+        "student_rego": "COW477",
+        "added_on": "2025-08-17T06:02:53.044080"
+    },
+    {
+        "student_id": 3,
+        "student_number": "0411012",
+        "student_first_name": "michael",
+        "student_last_name": "kalaf",
+        "student_email": "mich@student.com",
+        "student_rego": "GHH456",
+        "added_on": "2025-08-21T15:35:32.582905"
+    },
+    {
+        "student_id": 4,
+        "student_number": "041122",
+        "student_first_name": "michael",
+        "student_last_name": "jaaf",
+        "student_email": "mich@email.com",
+        "student_rego": "FTG453",
+        "added_on": "2025-08-23T07:11:57.779565"
+    },
+    {
+        "student_id": 5,
+        "student_number": "12345",
+        "student_first_name": "Mohamed",
+        "student_last_name": "Abdi",
+        "student_email": "moab@gmail.com",
+        "student_rego": "PDF235",
+        "added_on": "2025-08-28T15:56:25.647267"
+    },
+    {
+        "student_id": 6,
+        "student_number": "12345",
+        "student_first_name": "test",
+        "student_last_name": "test1",
+        "student_email": "test@student.com",
+        "student_rego": "TES123",
+        "added_on": "2025-09-01T09:24:10.769847"
+    }
+]
